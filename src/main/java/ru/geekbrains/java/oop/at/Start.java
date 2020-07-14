@@ -1,60 +1,41 @@
 package ru.geekbrains.java.oop.at;
 
-import java.util.Random;
-
 public class Start {
     public static void main(String[] args) {
+        Actions catMatroskin = new Cat("Матроскин", 9, 10);
+        Actions catBarsik = new Cat("Барсик", 8, 15);
 
-        Random rand = new Random();
-        Actions[] actions = new Actions[3];
+        Actions humanFedor = new Human("Дядя Фёдор", 20, 7);
+        Actions humanPechkin = new Human("Печкин", 15, 5);
 
-        int distance = rand.nextInt(10);
-        int height = rand.nextInt(10);
-        actions[0] = new Human("Человек", distance, height);
+        Actions robotArnold = new Robot("Арнольд", 15, 11);
+        Actions robotVerter = new Robot("Вертер", 25, 9);
 
-        distance = rand.nextInt(10);
-        height = rand.nextInt(10);
-        actions[1] = new Robot("Робот", distance, height);
+        Actions[] participants = {catMatroskin, catBarsik, humanPechkin, humanFedor, robotArnold, robotVerter};
 
-        distance = rand.nextInt(10);
-        height = rand.nextInt(10);
-        actions[2] = new Cat("Кот", distance, height);
 
-        Barrier[] barriers = new Barrier[6];
+        Barrier wall = new Wall(10);
+        Barrier wall1 = new Wall(11);
 
-        boolean isRoad;
+
+        Barrier treadmill = new Treadmill(10);
+        Barrier treadmill1 = new Treadmill(15);
+
+
+        Barrier[] barriers = {wall, wall1, treadmill, treadmill1};
+
+
+        System.out.println("На старт! Внимание! Марш!");
         for (int i = 0; i < barriers.length; i++) {
-            distance = rand.nextInt(10);
-            isRoad = rand.nextBoolean();
-            if (isRoad) {
-                barriers[i] = new Road("Беговая дорожка,", distance);
-            } else {
-                barriers[i] = new Wall("Стена,", distance);
+            System.out.println("\n\nИспытание " + (i + 1));
+
+            for (Actions participant : participants) {
+                if (participant.getSuccess()) {
+                    System.out.println("*******************************************************");
+                    barriers[i].check(participant);
+                }
+
             }
-        }
-
-        for (int i = 0; i < actions.length; i++) {
-            boolean result = true;
-            for (int j = 0; j < barriers.length; j++) {
-
-
-                if (Human.class == actions[i].getClass()) {
-                    result = barriers[j].moving((Human) actions[i]);
-                }
-
-                if (Robot.class == actions[i].getClass()) {
-                    result = barriers[j].moving((Robot) actions[i]);
-                }
-
-                if (Cat.class == actions[i].getClass()) {
-                    result = barriers[j].moving((Cat) actions[i]);
-                }
-
-                if (!result) {
-                    break;
-                }
-            }
-
         }
     }
 }

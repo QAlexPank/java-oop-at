@@ -4,6 +4,7 @@ public class Cat implements Actions {
     private String name;
     private int runDistance;
     private int jumpHeight;
+    private boolean success = true;
 
     public Cat(String name, int distance, int jumpHeight) {
         this.name = name;
@@ -12,12 +13,15 @@ public class Cat implements Actions {
     }
 
     public void run() {
-        System.out.println(this.name + " бежит: " + this.getRunDistance());
+        System.out.println(this.name + " может пробежать: " + this.getRunDistance());
     }
 
-
     public void jump() {
-        System.out.println(this.name + " прыгает: " + this.getJumpHeight());
+        System.out.println(this.name + " может прыгнуть: " + this.getJumpHeight());
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getRunDistance() {
@@ -26,5 +30,13 @@ public class Cat implements Actions {
 
     public int getJumpHeight() {
         return this.jumpHeight;
+    }
+
+    public boolean getSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 }

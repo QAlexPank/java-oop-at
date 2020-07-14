@@ -1,64 +1,19 @@
 package ru.geekbrains.java.oop.at;
 
-public class Wall extends Barrier {
-
+public class Wall implements Barrier {
     private int height;
 
-    public Wall(String name, int height) {
-        super(name);
-
+    public Wall(int height) {
         this.height = height;
     }
 
-    public int getHeight() {
-        return height;
-    }
-
-    protected boolean moving(Human human) {
-        System.out.println(super.getName() + " высота: " + this.height);
-
-        human.jump();
-
-        if (getHeight() <= human.getJumpHeight()) {
-            System.out.println("Перепрыгнул");
-
-            return true;
+    public void check(Actions actions) {
+        actions.jump();
+        actions.setSuccess(actions.getJumpHeight() >= height);
+        if (actions.getSuccess()) {
+            System.out.println(actions.getName() + " выполнил испытание, перепрыгнув стену высотой: " + height);
         } else {
-            System.out.println("Не перепрыгнул");
-
-            return false;
-        }
-    }
-
-    protected boolean moving(Robot robot) {
-        System.out.println(super.getName() + " высота: " + this.height);
-
-        robot.jump();
-
-        if (getHeight() <= robot.getJumpHeight()) {
-            System.out.println("Перепрыгнул");
-
-            return true;
-        } else {
-            System.out.println("Не перепрыгнул");
-
-            return false;
-        }
-    }
-
-    protected boolean moving(Cat cat) {
-        System.out.println(super.getName() + " высота: " + this.height);
-
-        cat.jump();
-
-        if (getHeight() <= cat.getJumpHeight()) {
-            System.out.println("Перепрыгнул");
-
-            return true;
-        } else {
-            System.out.println("Не перепрыгнул");
-
-            return false;
+            System.out.println(actions.getName() + " не перепрыгнул стену высотой: " + height);
         }
     }
 }

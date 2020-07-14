@@ -1,19 +1,6 @@
 package ru.geekbrains.java.oop.at;
 
-public abstract class Barrier {
-    private String name;
-
-    public Barrier(String name) {
-        this.name = name;
-    }
-
-    protected abstract boolean moving(Human human);
-
-    protected abstract boolean moving(Robot robot);
-
-    protected abstract boolean moving(Cat cat);
-
-    public String getName() {
-        return name;
-    }
+public interface Barrier {
+    void check(Actions participant);
 }
+
