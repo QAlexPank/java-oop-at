@@ -2,7 +2,6 @@ package ru.geekbrains.java.oop.at.base;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -17,7 +16,7 @@ public abstract class BaseTest {
 
     @BeforeEach
     public void beforeAll() {
-        System.setProperty("webdriver.chrome.driver", "C:\\\\ChromeDriver\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications");
         options.addArguments("--disable-popup-blocking");
@@ -26,6 +25,8 @@ public abstract class BaseTest {
         chromeDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         chromeDriver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
         chromeDriver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
+
+        chromeDriver.manage().window().maximize();
 
         chromeDriver.get("https://geekbrains.ru/events");
 
