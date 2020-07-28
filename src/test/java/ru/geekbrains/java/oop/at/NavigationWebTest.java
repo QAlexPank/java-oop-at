@@ -44,7 +44,6 @@ public class NavigationWebTest extends BaseWebTest {
         contentPage.checkNamePage(namePage);
     }
 
-
     @ParameterizedTest
     @MethodSource("dataProvider")
     public void courses(String namePage) {

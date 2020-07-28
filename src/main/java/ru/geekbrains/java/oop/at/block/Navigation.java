@@ -53,5 +53,4 @@ public class Navigation extends PageFactory {
         }
         throw new RuntimeException("кнопки: " + nameButton + " нет на странице!");
     }
-
 }

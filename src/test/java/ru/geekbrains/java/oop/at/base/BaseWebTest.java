@@ -27,11 +27,11 @@ public abstract class BaseWebTest {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
         driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
+
         driver.manage().window().maximize();
 
         wait15second = new WebDriverWait(driver, 15);
     }
-
 
     @AfterEach
     public void afterAll() {

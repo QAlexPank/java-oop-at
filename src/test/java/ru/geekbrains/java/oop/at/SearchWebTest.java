@@ -15,18 +15,6 @@ import static org.hamcrest.Matchers.equalTo;
 @DisplayName("Тест на поиск")
 public class SearchWebTest extends BaseWebTest {
 
-//    Перейти на сайт https://geekbrains.ru/events
-//    Нажать на кнопку Поиск
-//    В поле Поиск ввести текст: java
-//    Проверить что на странице:
-//    Профессий не менее чем 2
-//    Курсов более 15
-//    Вебинаров больше чем 180, но меньше 300
-//    В вебинарах отображается первым “Java Junior. Что нужно знать для успешного собеседования?”
-//    Блогов более 300
-//    Форумов не 350
-//    Тестов не 0
-
     @BeforeEach
     public void beforeEach() {
         driver.get("https://geekbrains.ru/events");
