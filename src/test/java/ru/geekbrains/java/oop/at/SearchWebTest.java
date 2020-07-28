@@ -1,5 +1,6 @@
 package ru.geekbrains.java.oop.at;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -26,9 +27,14 @@ public class SearchWebTest extends BaseWebTest {
 //    Форумов не 350
 //    Тестов не 0
 
+    @BeforeEach
+    public void beforeEach() {
+        driver.get("https://geekbrains.ru/events");
+    }
+
     @DisplayName("Поиск по блокам")
     @Test
-    public void checkSearch() {
+    void checkSearch() {
         WebElement buttonSearch = driver.findElement(By.cssSelector("[class=\"show-search-form\"] [class=\"svg-icon icon-search \"]"));
         buttonSearch.click();
         WebElement inputSearch = driver.findElement(By.cssSelector("[class=\"search-panel__search-field\"]"));

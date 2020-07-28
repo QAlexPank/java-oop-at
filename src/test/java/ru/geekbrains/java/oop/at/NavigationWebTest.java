@@ -1,65 +1,56 @@
 package ru.geekbrains.java.oop.at;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.geekbrains.java.oop.at.base.BaseWebTest;
+import ru.geekbrains.java.oop.at.page.ContentPage;
 
 import java.util.stream.Stream;
 
 @DisplayName("Тест на навигацию")
 public class NavigationWebTest extends BaseWebTest {
 
-//    Перейти на сайт https://geekbrains.ru/events
-//    Нажать на кнопку Курсы
-//    Проверить что страница Курсы открылась
-//    Повторить для
-//    Курсы
-//    Вебинары
-//    Форум
-//    Блог
-//    Тесты
-//    Карьера
-//    Реализовать проверку отображения блоков Header и Footer на каждой странице сайта (как минимум самого блока)
+    @BeforeEach
+    public void beforeEach() {
+        driver.get("https://geekbrains.ru/events");
+    }
 
     @AfterEach
     void tearDown() {
-        WebElement header = driver.findElementByCssSelector("[class*=\"gb-header__content\"]");
-        WebElement footer = driver.findElementByCssSelector("[class=\"site-footer__content\"]");
+        ContentPage contentPage = PageFactory.initElements(driver, ContentPage.class);
 
         wait15second.until(ExpectedConditions.visibilityOf(
-                header));
+                contentPage.getHeader()));
         wait15second.until(ExpectedConditions.visibilityOf(
-                footer));
+                contentPage.getFooter()));
     }
 
     @DisplayName("Курсы")
     @Test
     public void courses() {
-        driver.findElement(By.cssSelector("[id=\"nav\"] a[href=\"/courses\"]")).click();
-        driver.findElement(By.cssSelector("button [class=\"svg-icon icon-popup-close-button \"]")).click();
-        Assertions.assertEquals(
-                "Курсы",
-                driver.findElement(By.cssSelector("[id=\"top-menu\"] h2")).getText()
-        );
+        String namePage="Курсы";
+        ContentPage contentPage = new ContentPage(driver);
+
+        contentPage.getNavigation().getButton(namePage).click();
+        contentPage.getButtonClosePopUp1().click();
+        contentPage.getButtonClosePopUp2().click();
+
+        contentPage.checkNamePage(namePage);
     }
 
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    public void courses(String namePage, String valueHref) {
-        driver.findElement(By.cssSelector("[id=\"nav\"] [href='/" + valueHref + "']")).click();
-        Assertions.assertEquals(
-                namePage,
-                driver.findElement(By.cssSelector("[id=\"top-menu\"] h2")).getText()
-        );
+    public void courses(String namePage) {
+        ContentPage contentPage = new ContentPage(driver);
+        contentPage.getNavigation().getButton(namePage).click();
+        contentPage.checkNamePage(namePage);
     }
 
     public static Stream<Arguments> dataProvider() {
