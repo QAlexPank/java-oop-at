@@ -12,21 +12,10 @@ import ru.geekbrains.java.oop.at.page.content.TestPage;
 import java.util.stream.Stream;
 import static ru.geekbrains.java.oop.at.block.LeftNavigation.Button;
 
-@Feature("Тест на навигацию")
+@Feature("Навигация")
 @Story("Переход на страницы")
 @DisplayName("Переход на страницы")
 public class LeftNavigationWebTest extends BeforeAndAfterStep {
-
-    @Description("Тесты которые проверяют функционал без Pop-UP")
-    @DisplayName("Нажатие на элемент навагации")
-    @ParameterizedTest(name = "{index} => Нажатие на: {0}")
-    @MethodSource("stringProviderNotPopUp")
-    public void checkNavigationNotPopUp(Button button) {
-        new TestPage(driver)
-                .openUrl()
-                .getLeftNavigation().clickButton(button)
-                .getHeader().checkNamePage(button.getText());
-    }
 
     public static Stream<Button> stringProviderNotPopUp() {
         return Stream.of(
@@ -37,7 +26,20 @@ public class LeftNavigationWebTest extends BeforeAndAfterStep {
         );
     }
 
+    @Description("Тесты на проверку функционала без Pop-UP")
+    @DisplayName("Нажатие на элемент навагации")
+    @ParameterizedTest(name = "{index} => Нажатие на: {0}")
+    @MethodSource("stringProviderNotPopUp")
+    public void checkNavigationNotPopUp(Button button) {
+        new TestPage(driver)
+                .openUrl()
+                .getLeftNavigation().clickButton(button)
+                .getHeader().checkNamePage(button.getText());
+    }
+
+
     @Test
+    @DisplayName("Нажатие на элемент навагации")
     public void checkNavigationPopUp() {
         new TestPage(driver)
                 .openUrl()

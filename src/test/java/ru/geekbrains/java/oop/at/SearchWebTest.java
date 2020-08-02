@@ -1,5 +1,6 @@
 package ru.geekbrains.java.oop.at;
 
+import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -17,8 +18,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.equalTo;
 
-@DisplayName("Тест на поиск")
+@Feature("Поиск")
 @Story("Проверка отображения блоков")
+@DisplayName("Проверка отображения блоков")
 public class SearchWebTest extends BeforeAndAfterStep {
 
     @BeforeEach
