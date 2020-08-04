@@ -12,6 +12,7 @@ import ru.geekbrains.java.oop.at.page.content.TestPage;
 import java.util.stream.Stream;
 import static ru.geekbrains.java.oop.at.block.LeftNavigation.Button;
 
+
 @Feature("Навигация")
 @Story("Переход на страницы")
 @DisplayName("Переход на страницы")
