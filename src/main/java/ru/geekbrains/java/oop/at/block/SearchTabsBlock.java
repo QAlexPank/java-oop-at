@@ -6,8 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import ru.geekbrains.java.oop.at.BasePageObject;
+import ru.geekbrains.java.oop.at.page.BasePageObject;
+import ru.geekbrains.java.oop.at.utils.ButtonNotFoundException;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -37,11 +37,9 @@ public class SearchTabsBlock extends BasePageObject {
     @FindBy(css = "[class='search-page-tabs'] [data-tab='companies']")
     private WebElement tabCompanies;
 
-    public SearchTabsBlock(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
-    }
+    public SearchTabsBlock(WebDriver driver) { super(driver); }
 
+    @Step("Нажатие на tab: {tab}")
     public void clickTab(Tab tab) {
         getTab(tab).click();
     }
@@ -72,7 +70,7 @@ public class SearchTabsBlock extends BasePageObject {
             case COMPANIES:
                 return tabCompanies;
             default:
-                throw new IllegalStateException("Unexpected value: " + tab);
+                throw new ButtonNotFoundException("Unexpected value: " + tab);
         }
     }
 

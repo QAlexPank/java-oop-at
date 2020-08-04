@@ -4,8 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import ru.geekbrains.java.oop.at.BasePageObject;
+import ru.geekbrains.java.oop.at.page.BasePageObject;
 import ru.geekbrains.java.oop.at.page.content.CoursePage;
 import ru.geekbrains.java.oop.at.page.content.HomePage;
 import ru.geekbrains.java.oop.at.page.content.TestPage;
@@ -34,13 +33,9 @@ public class LeftNavigation extends BasePageObject {
     @FindBy(css = "[id='nav'] [href='/career']")
     private WebElement buttonCareer;
 
-    public LeftNavigation(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
-    }
+    public LeftNavigation(WebDriver driver) { super(driver); }
 
-
-    @Step("Нажатие кнопки {nameButton}")
+    @Step("Нажатие кнопки {button}")
     public ContentBasePage clickButton(Button button) {
         ContentBasePage contentBasePage = null;
 
@@ -95,5 +90,4 @@ public class LeftNavigation extends BasePageObject {
             return text;
         }
     }
-
 }

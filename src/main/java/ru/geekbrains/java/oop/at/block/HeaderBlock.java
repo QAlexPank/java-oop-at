@@ -4,9 +4,8 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import ru.geekbrains.java.oop.at.BasePageObject;
+import ru.geekbrains.java.oop.at.page.BasePageObject;
 import ru.geekbrains.java.oop.at.page.content.SearchPage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -14,6 +13,7 @@ import static org.hamcrest.Matchers.equalToCompressingWhiteSpace;
 
 public class HeaderBlock extends BasePageObject {
 
+    //Общие поля
     @FindBy(css = "[class='gb-header__title']")
     protected WebElement headerTitlePage;
 
@@ -23,12 +23,14 @@ public class HeaderBlock extends BasePageObject {
     @FindBy(css = "input[class='search-panel__search-field']")
     protected WebElement inputSearch;
 
+    //Поля для не авторизованного пользователя
     @FindBy(css = "[href='/login']")
     private WebElement singIn;
 
     @FindBy(css = "href='/register'")
     private WebElement registration;
 
+    //Поля для авторизованного пользователя
     @FindBy(css = "header [class='schedule-opener js-schedule-opener']")
     private WebElement buttonCalendar;
 
@@ -44,10 +46,7 @@ public class HeaderBlock extends BasePageObject {
     @FindBy(css = "[class='gb-top-menu__item dropdown']")
     private WebElement buttonAvatar;
 
-    public HeaderBlock(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
-    }
+    public HeaderBlock(WebDriver driver) { super(driver); }
 
     @Step("проверка что имя страницы: {exampleNamePage}")
     public HeaderBlock checkNamePage(String exampleNamePage) {

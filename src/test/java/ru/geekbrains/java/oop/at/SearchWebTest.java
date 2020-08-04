@@ -5,18 +5,13 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.geekbrains.java.oop.at.base.BeforeAndAfterStep;
 import ru.geekbrains.java.oop.at.block.SearchTabsBlock;
 import ru.geekbrains.java.oop.at.page.content.TestPage;
 
 import java.util.concurrent.TimeUnit;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.hamcrest.Matchers.equalTo;
 
 @Feature("Поиск")
 @Story("Проверка отображения блоков")
