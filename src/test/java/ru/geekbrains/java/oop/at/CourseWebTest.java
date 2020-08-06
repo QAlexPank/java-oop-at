@@ -9,7 +9,7 @@ import ru.geekbrains.java.oop.at.block.ContentNavigationCourseBlock;
 import ru.geekbrains.java.oop.at.block.LeftNavigation;
 import ru.geekbrains.java.oop.at.page.content.CoursePage;
 
-@Feature("Поиск")
+@Feature("Поиск по курсам")
 @Story("Проверка отображения блоков")
 @DisplayName("Страница Курсы")
 public class CourseWebTest extends BeforeAndAfterStep {

@@ -44,7 +44,7 @@ public class SearchTabsBlock extends BasePageObject {
         getTab(tab).click();
     }
 
-    @Step("Проверяю {tab} на условие {matcher}")
+    @Step("Проверка {tab} на условие {matcher}")
     public SearchTabsBlock checkCount(Tab tab, Matcher<Integer> matcher) {
         String actualCount = getTab(tab).findElement(By.cssSelector("span")).getText();
         assertThat(Integer.parseInt(actualCount), matcher);
